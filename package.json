@@ -1,6 +1,6 @@
 {
   "name": "@petros-g/react-native-switch",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple, yet fast react native animated switch, with many styling options.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -160,5 +160,6 @@
         }
       ]
     ]
-  }
+  },
+  "private": false
 }
