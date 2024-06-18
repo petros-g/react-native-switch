@@ -20,7 +20,7 @@ type Props = {
   disabled?: boolean;
   trackWidth?: number;
   trackHeight?: number;
-  thumbSize?: number;
+  circleSize?: number;
   activeText?: string;
   inactiveText?: string;
   animationDuration?: number;
@@ -32,6 +32,8 @@ type Props = {
   textStyle?: StyleProp<TextStyle>;
   trackStyle?: StyleProp<ViewStyle>;
   enableDrag?: boolean;
+  circleSlide?: boolean;
+  circleStyle?: StyleProp<ViewStyle>;
   onValueChange: (value: boolean) => void | Dispatch<SetStateAction<boolean>>;
   renderCircleChild?: React.JSX.Element | React.ReactNode;
 };
@@ -39,7 +41,7 @@ type Props = {
 export const Switch = ({
   value,
   disabled = false,
-  thumbSize = 40,
+  circleSize = 40,
   trackHeight = 45,
   trackWidth = 95,
   activeText,
@@ -48,18 +50,20 @@ export const Switch = ({
   trackInactiveColor = '#bdbdbd',
   circleActiveColor = 'white',
   circleInactiveColor = 'white',
-  circleOffset = -2,
-  animationDuration = 700,
+  circleOffset = 0,
+  animationDuration = 600,
   textStyle,
   trackStyle,
   enableDrag = false,
+  circleSlide = false,
+  circleStyle,
   onValueChange = () => {},
   renderCircleChild,
 }: Props) => {
-  const translateOffset = trackWidth - thumbSize + circleOffset;
+  const translateOffset = trackWidth - circleSize + circleOffset;
   const translateX = useSharedValue(value ? translateOffset : -circleOffset);
 
-  const animatedThumbStyle = useAnimatedStyle(() => {
+  const animatedCircleStyle = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       translateX.value,
       [-circleOffset, translateOffset],
@@ -69,14 +73,7 @@ export const Switch = ({
     const width = interpolate(
       translateX.value,
       [-circleOffset, translateOffset / 4, translateOffset],
-      [thumbSize, trackWidth / 1.5, thumbSize],
-      'clamp'
-    );
-
-    const scaleY = interpolate(
-      translateX.value,
-      [-circleOffset, translateOffset / 4, translateOffset],
-      [1, 0.9, 1],
+      [circleSize, trackWidth / 1.5, circleSize],
       'clamp'
     );
 
@@ -86,7 +83,7 @@ export const Switch = ({
           translateX: translateX.value,
         },
       ],
-      width,
+      ...(circleSlide ? { width } : {}),
       backgroundColor,
     };
   });
@@ -105,10 +102,10 @@ export const Switch = ({
 
   const animatedActiveText = useAnimatedStyle(() => {
     if (!activeText) return {};
-    const _translateX = interpolate(
+    const left = interpolate(
       translateX.value,
       [-circleOffset, translateOffset],
-      [0, trackWidth / 2 - circleOffset - thumbSize / 2],
+      [0, 10],
       'clamp'
     );
 
@@ -121,37 +118,29 @@ export const Switch = ({
 
     return {
       opacity: _opacity,
-      transform: [
-        {
-          translateX: _translateX,
-        },
-      ],
+      left,
     };
   });
 
   const animatedInactiveText = useAnimatedStyle(() => {
     if (!inactiveText) return {};
-    const _translateX = interpolate(
+    const right = interpolate(
       translateX.value,
-      [-circleOffset, translateOffset],
-      [trackWidth / 2 - circleOffset, translateOffset],
+      [-circleOffset, trackWidth],
+      [10, 0],
       'clamp'
     );
 
     const _opacity = interpolate(
       translateX.value,
-      [-circleOffset, translateOffset],
+      [-circleOffset, circleSlide ? translateOffset / 2 : translateOffset],
       [1, 0],
       'clamp'
     );
 
     return {
       opacity: _opacity,
-      transform: [
-        {
-          translateX: _translateX,
-        },
-      ],
+      right,
     };
   });
 
@@ -159,7 +148,7 @@ export const Switch = ({
     if (disabled) {
       return;
     }
-
+    console.log('INSIDEEEE:', value);
     const animateToValue = value ? -circleOffset : translateOffset;
 
     translateX.value =
@@ -170,10 +159,19 @@ export const Switch = ({
         : animateToValue;
     onValueChange(!value);
   };
+  console.log(value);
 
   const tap = Gesture.Tap()
     .onStart(() => {
-      runOnJS(onPressHandler)();
+      const animateToValue = value ? -circleOffset : translateOffset;
+
+      translateX.value =
+        animationDuration > 0
+          ? withTiming(animateToValue, {
+              duration: animationDuration,
+            })
+          : animateToValue;
+      runOnJS(onValueChange)(!value);
     })
     .enabled(!disabled);
 
@@ -234,15 +232,17 @@ export const Switch = ({
             {inactiveText}
           </Animated.Text>
         )}
+
         <Animated.View
           style={[
-            styles.thumb,
+            styles.circle,
             {
-              width: thumbSize,
-              height: thumbSize,
-              borderRadius: thumbSize,
+              width: circleSize,
+              height: circleSize,
+              borderRadius: circleSize,
             },
-            animatedThumbStyle,
+            circleStyle,
+            animatedCircleStyle,
           ]}
         >
           {renderCircleChild && renderCircleChild}
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
   track: {
     justifyContent: 'center',
   },
-  thumb: {
+  circle: {
     shadowOpacity: 0.15,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 3 },
