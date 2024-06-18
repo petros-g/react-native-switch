@@ -7,36 +7,29 @@ import { Switch } from '../../src';
 
 export default function App() {
   const [value, setValue] = React.useState(false);
+  const [value1, setValue1] = React.useState(false);
+  const [value2, setValue2] = React.useState(false);
+  const [value3, setValue3] = React.useState(false);
+  const [value4, setValue4] = React.useState(false);
+  const [value5, setValue5] = React.useState(false);
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Switch
-          value={value}
-          onValueChange={(val) => setValue(val)}
-          enableDrag
-          trackWidth={95}
-          trackHeight={45}
-          circleSize={40}
-          circleOffset={-3}
-          circleSlide={false}
-          trackActiveColor="#42adff"
-        />
-        <Switch
-          value={value}
-          onValueChange={(val) => setValue(val)}
+          value={value1}
+          onValueChange={(val) => setValue1(val)}
           enableDrag
           trackWidth={95}
           trackHeight={45}
           circleSize={40}
           circleOffset={-3}
           circleSlide={true}
-          trackActiveColor="#42adff"
         />
 
         <Switch
-          value={value}
-          onValueChange={(val) => setValue(val)}
+          value={value2}
+          onValueChange={(val) => setValue2(val)}
           enableDrag
           trackWidth={95}
           trackHeight={45}
@@ -47,8 +40,8 @@ export default function App() {
         />
 
         <Switch
-          value={value}
-          onValueChange={(val) => setValue(val)}
+          value={value3}
+          onValueChange={(val) => setValue3(val)}
           enableDrag
           trackWidth={95}
           trackHeight={45}
@@ -68,8 +61,8 @@ export default function App() {
         />
 
         <Switch
-          value={value}
-          onValueChange={(val) => setValue(val)}
+          value={value4}
+          onValueChange={(val) => setValue4(val)}
           enableDrag
           trackWidth={50}
           trackHeight={20}
@@ -90,8 +83,8 @@ export default function App() {
         />
 
         <Switch
-          value={value}
-          onValueChange={(val) => setValue(val)}
+          value={value5}
+          onValueChange={(val) => setValue5(val)}
           enableDrag
           trackWidth={50}
           trackHeight={20}

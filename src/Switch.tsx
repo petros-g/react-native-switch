@@ -144,23 +144,6 @@ export const Switch = ({
     };
   });
 
-  const onPressHandler = () => {
-    if (disabled) {
-      return;
-    }
-    console.log('INSIDEEEE:', value);
-    const animateToValue = value ? -circleOffset : translateOffset;
-
-    translateX.value =
-      animationDuration > 0
-        ? withTiming(animateToValue, {
-            duration: animationDuration,
-          })
-        : animateToValue;
-    onValueChange(!value);
-  };
-  console.log(value);
-
   const tap = Gesture.Tap()
     .onStart(() => {
       const animateToValue = value ? -circleOffset : translateOffset;
