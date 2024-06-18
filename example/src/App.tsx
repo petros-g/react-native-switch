@@ -6,7 +6,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Switch } from '../../src';
 
 export default function App() {
-  const [value, setValue] = React.useState(false);
   const [value1, setValue1] = React.useState(false);
   const [value2, setValue2] = React.useState(false);
   const [value3, setValue3] = React.useState(false);
@@ -14,7 +13,7 @@ export default function App() {
   const [value5, setValue5] = React.useState(false);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={{}}>
       <View style={styles.container}>
         <Switch
           value={value1}
@@ -49,15 +48,7 @@ export default function App() {
           circleOffset={-3}
           circleActiveColor="white"
           trackActiveColor="#42adff"
-          trackStyle={{
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 6,
-            },
-            shadowOpacity: 0.22,
-            shadowRadius: 2.22,
-          }}
+          trackStyle={styles.circle}
         />
 
         <Switch
@@ -71,15 +62,7 @@ export default function App() {
           circleActiveColor="white"
           trackActiveColor="#42adff"
           animationDuration={1}
-          circleStyle={{
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 2,
-              height: 2,
-            },
-            shadowOpacity: 0.22,
-            shadowRadius: 2.22,
-          }}
+          circleStyle={styles.circle}
         />
 
         <Switch
@@ -93,15 +76,7 @@ export default function App() {
           circleActiveColor="white"
           trackActiveColor="#42adff"
           animationDuration={200}
-          circleStyle={{
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 2,
-              height: 2,
-            },
-            shadowOpacity: 0.22,
-            shadowRadius: 2.22,
-          }}
+          circleStyle={styles.circle}
         />
       </View>
     </GestureHandlerRootView>
@@ -119,5 +94,14 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     marginVertical: 20,
+  },
+  circle: {
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 2,
+      height: 2,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
   },
 });
