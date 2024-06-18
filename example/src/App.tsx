@@ -13,7 +13,7 @@ export default function App() {
   const [value5, setValue5] = React.useState(false);
 
   return (
-    <GestureHandlerRootView style={{}}>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
         <Switch
           value={value1}
@@ -67,7 +67,7 @@ export default function App() {
 
         <Switch
           value={value5}
-          onValueChange={(val) => setValue5(val)}
+          onValueChange={setValue5}
           enableDrag
           trackWidth={50}
           trackHeight={20}
@@ -76,7 +76,6 @@ export default function App() {
           circleActiveColor="white"
           trackActiveColor="#42adff"
           animationDuration={200}
-          circleStyle={styles.circle}
         />
       </View>
     </GestureHandlerRootView>
