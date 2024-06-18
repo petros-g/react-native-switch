@@ -9,13 +9,12 @@ A customizable and animated switch component for React Native. Easily integrate 
 To be able to run this screen you need to run the following:
 
 ```bash
-npm install @petros-g/react-native-switch react-native-gesture-handler react-native-reanimated
+yarn add @petros-g/react-native-switch react-native-gesture-handler react-native-reanimated
 ```
-
 or
 
 ```bash
-yarn add @petros-g/react-native-switch react-native-gesture-handler react-native-reanimated
+npm install @petros-g/react-native-switch react-native-gesture-handler react-native-reanimated
 ```
 
 
