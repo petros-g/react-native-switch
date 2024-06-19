@@ -1,15 +1,13 @@
 {
   "name": "@petros-g/react-native-switch",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "A simple, yet fast react native animated switch, with many styling options.",
-  "main": "src/index.ts",
-  "types": "lib\\typescript\\src\\index.d.ts",
+  "types": "lib/typescript/src/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
   "files": [
     "src",
     "lib",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
     "android",
     "ios",
     "cpp",
@@ -20,6 +18,9 @@
     "!android/gradlew",
     "!android/gradlew.bat",
     "!android/local.properties",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
     "!**/.*"
   ],
   "scripts": {
@@ -29,13 +30,19 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "clean": "del-cli lib",
     "prepare": "bob build",
-    "release": "release-it",
-    "prepack": "bob build"
+    "release": "release-it"
   },
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "switch",
+    "animated",
+    "toggle",
+    "button",
+    "mobile",
+    "react native switch",
+    "react native animated switch"
   ],
   "repository": {
     "type": "git",
@@ -66,7 +73,7 @@
     "prettier": "^3.0.3",
     "react": "18.2.0",
     "react-native": "0.74.2",
-    "react-native-builder-bob": "^0.20.4",
+    "react-native-builder-bob": "^0.20.0",
     "react-native-gesture-handler": "^2.16.2",
     "react-native-reanimated": "^3.12.0",
     "release-it": "^15.0.0",
@@ -149,8 +156,12 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "typescript"
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
-  },
-  "react-native": "src\\index.ts"
+  }
 }
