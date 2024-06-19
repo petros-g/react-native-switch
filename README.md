@@ -1,8 +1,20 @@
 
+# React Native Switch
 
-# A simple yet fast react native switch
+🚀 Fast, Smooth, and Performant Switch Component
 
-A customizable and animated switch component for React Native. Easily integrate beautiful switches in your app with smooth animations and extensive customization options.
+- 🎬 **Animated**: Seamlessly animated transitions.
+- ⚡ **Fast**: Optimized for speed and responsiveness.
+- 💡 **Smooth**: Provides a smooth user experience.
+- 🏋️ **Performant**: High-performance rendering.
+- 🖱️ **Gestures**: Supports draggable interactions.
+- 🧵 **Runs on UI Thread**: Does not block the JavaScript thread.
+
+Try it now! Enhance your app with a powerful React Native Switch component!
+<p align="center">
+<img src="https://github.com/petros-g/react-native-switch/assets/96618818/573e539e-c977-48b7-996d-a8afcc95c35a" width="250" height="500" />
+</p>
+
 
 ## Installation
 
