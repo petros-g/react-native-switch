@@ -3,7 +3,7 @@ import 'react-native-gesture-handler';
 
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Switch } from '../..';
+import { Switch } from '../../src/index';
 
 export default function App() {
   const [value1, setValue1] = React.useState(false);
