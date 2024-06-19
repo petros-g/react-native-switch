@@ -3,6 +3,8 @@
 
 🚀 Fast, Smooth, and Performant Switch Component
 
+
+- 🌍 **Universal**: Same UI for both Android & iOS.
 - 🎬 **Animated**: Seamlessly animated transitions.
 - ⚡ **Fast**: Optimized for speed and responsiveness.
 - 💡 **Smooth**: Provides a smooth user experience.
